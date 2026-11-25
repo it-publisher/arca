@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Arca</title>
+  <link rel="icon" href="/favicon.svg">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/">
+      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M8 25V15a8 8 0 0 1 16 0v10h-4.5V15a3.5 3.5 0 0 0-7 0v10z"/></svg>
+      <span>Arca</span>
+    </a>
+    <nav class="topnav"><a class="btn btn-ghost" href="/">Новая заметка</a></nav>
+  </header>
+
+  <main class="note-page">
+    <p id="loading" class="muted">Расшифровываю…</p>
+    <p id="error" class="panel notice notice-error" hidden></p>
+
+    <section id="burn-gate" class="panel burn-gate" hidden>
+      <span class="burn-gate-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg></span>
+      <h1>Заметка сгорит после прочтения</h1>
+      <p class="muted">Открыть её можно только один раз: после этого она удаляется с сервера.</p>
+      <button id="burn-open" class="btn btn-burn" type="button">Открыть заметку</button>
+    </section>
+
+    <p id="burned" class="notice notice-burn" hidden>
+      Заметка сожжена — это был единственный просмотр. Скопируй текст, если он нужен. Файлы доступны ещё 10 минут.
+    </p>
+
+    <article id="note" class="panel note" hidden>
+      <div class="note-header">
+        <div class="note-meta">
+          <span id="meta" class="muted small"></span>
+          <span id="expiry"></span>
+          <span id="language-badge" class="badge" hidden></span>
+        </div>
+        <div id="note-actions" class="note-actions">
+          <button id="edit-note" class="btn btn-icon" type="button" title="Редактировать" aria-label="Редактировать" data-icon="pencil" hidden></button>
+          <button id="share-note" class="btn btn-icon" type="button" title="Поделиться ссылкой" aria-label="Поделиться ссылкой" data-icon="share"></button>
+          <button id="copy-text" class="btn btn-icon" type="button" title="Копировать текст" aria-label="Копировать текст" data-icon="copy"></button>
+          <button id="download-text" class="btn btn-icon" type="button" title="Скачать" aria-label="Скачать" data-icon="download"></button>
+        </div>
+      </div>
+      <div id="content" class="note-content"></div>
+      <div id="editor" class="note-editor" hidden>
+        <textarea id="edit-text" class="editor-input" aria-label="Текст заметки"></textarea>
+        <div class="editor-footer">
+          <span class="muted small">⌘↵ — сохранить · Esc — отмена</span>
+          <div class="editor-actions">
+            <button id="edit-cancel" class="btn btn-secondary" type="button">Отмена</button>
+            <button id="edit-save" class="btn btn-primary" type="button">Сохранить</button>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <section id="files-section" class="panel" hidden>
+      <h2 class="panel-title">Файлы</h2>
+      <ul id="files" class="file-list"></ul>
+    </section>
+  </main>
+
+  <p id="toast" class="toast" role="status" hidden></p>
+  <script type="module" src="./src/view.js"></script>
+</body>
+</html>

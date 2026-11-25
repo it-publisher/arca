@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Вход — Arca</title>
+  <link rel="icon" href="/favicon.svg">
+</head>
+<body>
+  <main class="login">
+    <form id="login-form" class="panel login-form">
+      <span class="brand">
+        <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M8 25V15a8 8 0 0 1 16 0v10h-4.5V15a3.5 3.5 0 0 0-7 0v10z"/></svg>
+        <span>Arca</span>
+      </span>
+      <label for="access-code" class="muted small">Код доступа</label>
+      <input id="access-code" class="input" type="password" autocomplete="current-password" required autofocus>
+      <button class="btn btn-primary" type="submit">Войти</button>
+      <p class="muted small">Код открывает все твои заметки — храни его как пароль. Читать заметки по ссылке можно без входа.</p>
+    </form>
+  </main>
+  <p id="toast" class="toast" role="status" hidden></p>
+  <script type="module" src="./src/login.js"></script>
+</body>
+</html>

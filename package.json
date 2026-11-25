@@ -1,0 +1,29 @@
+{
+  "name": "arca",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Self-hosted end-to-end encrypted notes and files",
+  "engines": {
+    "node": ">=22.13"
+  },
+  "bin": {
+    "arca": "cli/arca.js"
+  },
+  "scripts": {
+    "build": "vite build",
+    "dev:web": "vite build --watch",
+    "dev:server": "node --watch --env-file-if-exists=.env server/index.js",
+    "start": "node --env-file-if-exists=.env server/index.js",
+    "test": "node --test test/",
+    "token": "node -e \"console.log(require('node:crypto').randomBytes(32).toString('base64url'))\"",
+    "access-code": "node scripts/access-code.js"
+  },
+  "devDependencies": {
+    "dompurify": "^3.5.0",
+    "highlight.js": "^11.12.0",
+    "marked": "^18.3.0",
+    "vite": "^8.3.8"
+  },
+  "license": "MIT"
+}

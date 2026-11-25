@@ -1,0 +1,28 @@
+[Unit]
+Description=Arca — encrypted notes
+After=network.target
+
+[Service]
+Type=simple
+User=arca
+Group=arca
+WorkingDirectory=/opt/arca
+ExecStart=/usr/bin/node --env-file=/opt/arca/.env server/index.js
+Restart=on-failure
+RestartSec=3
+
+# Hardening: the service can write only to its data directory.
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+PrivateDevices=yes
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+ReadWritePaths=/opt/arca/data
+MemoryMax=400M
+
+[Install]
+WantedBy=multi-user.target

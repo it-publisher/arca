@@ -1,0 +1,11 @@
+# Replace arca.example.com with your subdomain. Caddy obtains the HTTPS certificate itself.
+arca.example.com {
+	encode zstd gzip
+	request_body {
+		max_size 60MB
+	}
+	header Strict-Transport-Security "max-age=31536000"
+	reverse_proxy 127.0.0.1:3000
+
+	# Readers' IPs are not logged: Caddy has no access log unless enabled.
+}
