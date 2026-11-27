@@ -8,14 +8,8 @@
     "node": ">=22.13"
   },
   "bin": {
-    "arca": "cli/arca.js",
-    "arca-shot": "scripts/arca-shot.sh"
+    "arca": "cli/arca.js"
   },
-  "files": [
-    "cli",
-    "shared",
-    "scripts"
-  ],
   "scripts": {
     "build": "vite build",
     "dev:web": "vite build --watch",
@@ -26,8 +20,7 @@
     "access-code": "node scripts/access-code.js",
     "site:build": "node site/build.js",
     "site:screens": "npm run build && node site/screenshots.js",
-    "site:preview": "node site/build.js && cd _site && python3 -m http.server 4000 --bind 127.0.0.1",
-    "cli:install": "npm install -g \"$(npm pack --silent)\" && rm -f arca-*.tgz"
+    "site:preview": "node site/build.js && cd _site && python3 -m http.server 4000 --bind 127.0.0.1"
   },
   "devDependencies": {
     "dompurify": "^3.5.0",

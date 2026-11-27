@@ -4,7 +4,7 @@ export const REPO_URL = 'https://github.com/it-publisher/arca';
 /** Docs order and sidebar groups; each slug is docs/<lang>/<slug>.md. */
 export const DOCS_NAV = [
   { group: { ru: 'Начало', en: 'Getting started' }, slugs: ['quickstart', 'how-it-works'] },
-  { group: { ru: 'Использование', en: 'Usage' }, slugs: ['web', 'cli', 'screenshot'] },
+  { group: { ru: 'Использование', en: 'Usage' }, slugs: ['web', 'cli'] },
   { group: { ru: 'Свой сервер', en: 'Self-hosting' }, slugs: ['deploy', 'users', 'maintenance'] },
   { group: { ru: 'Справка', en: 'Reference' }, slugs: ['api', 'security', 'faq'] },
 ];
@@ -48,7 +48,6 @@ export const CONTENT = {
         { icon: 'paperclip', title: 'Файлы', text: 'До 10 файлов по 50 МБ: перетащить, вставить из буфера или выбрать.' },
         { icon: 'devices', title: 'Мои заметки везде', text: 'Зашифрованный список общий для всех браузеров и терминала.' },
         { icon: 'terminal', title: 'CLI', text: 'Файлы, stdin и <code>$EDITOR</code>. Черновик не теряется, даже если закрыть терминал.' },
-        { icon: 'scan', title: 'Скриншот → ссылка', text: 'Горячая клавиша на macOS: выделил область — ссылка уже в буфере.' },
       ],
     },
     showcase: [
@@ -171,7 +170,6 @@ export const CONTENT = {
         { icon: 'paperclip', title: 'Files', text: 'Up to 10 files of 50 MB each: drag, paste from the clipboard or pick.' },
         { icon: 'devices', title: 'My notes, everywhere', text: 'One encrypted list shared by all your browsers and the terminal.' },
         { icon: 'terminal', title: 'CLI', text: 'Files, stdin and <code>$EDITOR</code>. The draft survives a closed terminal.' },
-        { icon: 'scan', title: 'Screenshot → link', text: 'A macOS hotkey: select an area, and the link is already in your clipboard.' },
       ],
     },
     showcase: [

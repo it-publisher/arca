@@ -11,7 +11,7 @@ Arca does one thing: quickly and privately share a note you need right now. Comp
 - Client-side encryption, always, not as an option
 - Only your people can write; anyone with a link can read
 - One encrypted “My notes” list in the browser and the terminal
-- A CLI and a screenshot hotkey
+- A CLI for the terminal
 - A Node server with zero external dependencies
 
 ## Can I enable open sign-up?

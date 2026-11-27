@@ -7,11 +7,9 @@
 Из папки проекта:
 
 ```bash
-npm run cli:install      # ставит команды arca и arca-shot
+npm link                 # команда arca станет доступна глобально
 arca login               # адрес сервера + код доступа
 ```
-
-Команды ставятся копией в папку Node (`/opt/homebrew/lib/node_modules/arca`), поэтому работают откуда угодно и не зависят от папки проекта. После обновления проекта повтори `npm run cli:install`.
 
 `arca login` сохраняет настройки в `~/.config/arca/config.json` с правами `600`.
 
