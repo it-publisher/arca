@@ -1,6 +1,7 @@
 #!/bin/bash
 # Select a screen area → encrypted Arca note → link in the clipboard.
-# Bind it to a hotkey with Shortcuts.app ("Run Shell Script"), see README.
+# Install with `npm run cli:install`, then bind /opt/homebrew/bin/arca-shot to a hotkey
+# in Shortcuts.app ("Run Shell Script", NOT as administrator). See docs/en/screenshot.md.
 set -euo pipefail
 
 # Hotkey launchers start with a minimal PATH, so Homebrew's node has to be added explicitly.

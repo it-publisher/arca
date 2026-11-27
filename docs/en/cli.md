@@ -7,9 +7,11 @@
 From the project folder:
 
 ```bash
-npm link                 # makes the arca command available globally
+npm run cli:install      # installs the arca and arca-shot commands
 arca login               # server URL + access code
 ```
+
+The commands are installed as a copy into Node’s folder (`/opt/homebrew/lib/node_modules/arca`), so they work from anywhere and don’t depend on the project folder. After updating the project, run `npm run cli:install` again.
 
 `arca login` saves settings to `~/.config/arca/config.json` with mode `600`.
 

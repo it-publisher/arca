@@ -77,6 +77,7 @@ echo "<токен>" | npm run -s access-code         # код доступа д�
 |---|---|
 | `npm run dev:web` + `npm run dev:server` | Фронтенд и сервер с перезапуском |
 | `npm test` | Тесты: API, шифрование, одноразовые заметки, история |
+| `npm run cli:install` | Поставить команды `arca` и `arca-shot` (копией, вне папки проекта) |
 | `npm run site:build` | Собрать сайт в `_site/` |
 | `npm run site:preview` | Собрать и открыть сайт на `http://127.0.0.1:4000` |
 | `npm run site:screens` | Переснять скриншоты для сайта (нужен Google Chrome) |
