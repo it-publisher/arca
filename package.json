@@ -15,7 +15,7 @@
     "dev:web": "vite build --watch",
     "dev:server": "node --watch --env-file-if-exists=.env server/index.js",
     "start": "node --env-file-if-exists=.env server/index.js",
-    "test": "node --test test/",
+    "test": "node --test \"test/*.test.js\"",
     "token": "node -e \"console.log(require('node:crypto').randomBytes(32).toString('base64url'))\"",
     "access-code": "node scripts/access-code.js",
     "site:build": "node site/build.js",
