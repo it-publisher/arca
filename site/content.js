@@ -1,0 +1,258 @@
+// All site copy, per language. Strings are trusted and may contain inline HTML.
+export const REPO_URL = 'https://github.com/it-publisher/arca';
+
+/** Docs order and sidebar groups; each slug is docs/<lang>/<slug>.md. */
+export const DOCS_NAV = [
+  { group: { ru: 'Начало', en: 'Getting started' }, slugs: ['quickstart', 'how-it-works'] },
+  { group: { ru: 'Использование', en: 'Usage' }, slugs: ['web', 'cli', 'screenshot'] },
+  { group: { ru: 'Свой сервер', en: 'Self-hosting' }, slugs: ['deploy', 'users', 'maintenance'] },
+  { group: { ru: 'Справка', en: 'Reference' }, slugs: ['api', 'security', 'faq'] },
+];
+
+export const CONTENT = {
+  ru: {
+    htmlLang: 'ru',
+    otherLang: { code: 'en', label: 'EN', title: 'English' },
+    meta: {
+      title: 'Arca — зашифрованные заметки по ссылке',
+      description: 'Self-hosted сервис для сиюминутных заметок: пишешь текст или кидаешь скриншот, получаешь ссылку. Шифрование в браузере, заметки сгорают через 30 дней.',
+    },
+    nav: { features: 'Возможности', how: 'Как устроено', docs: 'Документация', menu: 'Меню' },
+    hero: {
+      eyebrow: 'Open source · MIT · свой сервер',
+      title: 'Заметки, которые нужны <span class="accent-text">прямо сейчас</span>',
+      lead: 'Записал мысль, пост, правку или задачу, кинул скриншот — получил ссылку. Заметка живёт 30 дней и сгорает. Всё шифруется на клиенте: сервер не видит ни текста, ни файлов, ни заголовков.',
+      primary: 'Установить',
+      secondary: 'Как это работает',
+      note: 'Node 22+ · сервер без npm-зависимостей · ~30 МБ памяти',
+      screenshotAlt: 'Редактор Arca: черновик в Markdown и список «Мои заметки»',
+    },
+    scenarios: {
+      title: 'Для чего',
+      lead: 'Пишут — ты и пара доверенных людей, у каждого свой код доступа. Читают — все, кому отправили ссылку, без регистрации.',
+      items: [
+        'Отправить черновик или фрагмент статьи коллеге на вычитку',
+        'Поделиться находкой из исследования, таблицей или выгрузкой, не оставляя её в мессенджере',
+        'Передать скриншот или PDF, который сам исчезнет через день или неделю',
+        'Опубликовать заметку прямо из nvim или терминала',
+        'Дать ИИ-агенту способ отдавать результат ссылкой',
+      ],
+    },
+    features: {
+      title: 'Всё нужное, ничего лишнего',
+      items: [
+        { icon: 'lock', title: 'Шифрование в браузере', text: 'AES-256-GCM. Ключ живёт в ссылке после <code>#</code>, сервер хранит только шифротекст.' },
+        { icon: 'flame', title: 'Сжечь после прочтения', text: 'Одноразовая заметка открывается по кнопке. Превью в мессенджерах её не сжигают.' },
+        { icon: 'timer', title: 'Срок жизни', text: 'От часа до бессрочно, по умолчанию 30 дней. Счётчик 🔥 на каждой заметке.' },
+        { icon: 'code', title: 'Код без исполнения', text: 'Подсветка 20 языков и номера строк. HTML и скрипты только показываются.' },
+        { icon: 'paperclip', title: 'Файлы', text: 'До 10 файлов по 50 МБ: перетащить, вставить из буфера или выбрать.' },
+        { icon: 'devices', title: 'Мои заметки везде', text: 'Зашифрованный список общий для всех браузеров и терминала.' },
+        { icon: 'terminal', title: 'CLI', text: 'Файлы, stdin и <code>$EDITOR</code>. Черновик не теряется, даже если закрыть терминал.' },
+        { icon: 'scan', title: 'Скриншот → ссылка', text: 'Горячая клавиша на macOS: выделил область — ссылка уже в буфере.' },
+      ],
+    },
+    showcase: [
+      { image: 'note', title: 'Markdown как на GitHub', text: 'Заголовки, таблицы, списки задач, цитаты и блоки кода с подсветкой. Автор может поправить заметку на месте — ссылка не меняется.', alt: 'Заметка в Markdown: план материала с таблицей и задачами' },
+      { image: 'code', title: 'Код, логи и конфиги', text: 'Скрипты, вёрстка, логи и диффы с подсветкой синтаксиса и номерами строк. Язык определяется сам. Ничего не исполняется — можно делиться даже подозрительным фрагментом.', alt: 'Python-скрипт с подсветкой синтаксиса и номерами строк' },
+      { image: 'burn', title: 'Один раз — и всё', text: 'Пароль, токен или личные данные: заметка сгорает в момент открытия и стирается с сервера в той же транзакции.', alt: 'Заглушка одноразовой заметки с кнопкой «Открыть заметку»' },
+    ],
+    how: {
+      title: 'Сервер ничего не знает',
+      lead: 'Шифрование происходит до отправки. Ключ передаётся в части ссылки после <code>#</code>, а её браузер никогда не отправляет на сервер.',
+      steps: [
+        { icon: 'laptop', title: 'Твой браузер', text: 'Создаёт случайный ключ и шифрует текст и файлы' },
+        { icon: 'server', title: 'Сервер', text: 'Хранит только шифротекст: без ключа это шум' },
+        { icon: 'user', title: 'Браузер читателя', text: 'Берёт ключ из ссылки и расшифровывает локально' },
+      ],
+      anatomy: { sent: 'уходит на сервер', kept: 'остаётся в браузере' },
+      demo: {
+        title: 'Попробуй сам',
+        hint: 'Всё происходит на этой странице, ничего никуда не отправляется.',
+        input: 'Текст заметки',
+        sample: 'Созвон в 15:00, пароль от стенда — в отдельной заметке.',
+        key: 'Ключ — только в ссылке',
+        cipher: 'Что получит сервер',
+        bytes: 'байт',
+        link: 'Ссылка для читателя',
+        decrypted: 'Читатель расшифровал',
+        regenerate: 'Новый ключ',
+        noScript: 'Для демо нужен JavaScript.',
+      },
+      more: 'Подробнее о шифровании',
+    },
+    cli: {
+      title: 'Из терминала и редактора',
+      lead: 'CLI <code>arca</code> шифрует так же, как браузер, и видит тот же список заметок.',
+      points: [
+        '<code>arca</code> — открыть <code>$EDITOR</code>, после сохранения получить ссылку',
+        '<code>cmd | arca</code> — опубликовать вывод любой команды',
+        '<code>arca get</code> — расшифровать заметку в stdout или в файл',
+        '<code>:w !arca</code> — опубликовать буфер прямо из nvim',
+      ],
+      more: 'Документация CLI',
+      terminal: [
+        { cmd: 'git diff | arca -l diff -e 1d', out: 'https://arca.example.com/n/Xp2kT9wLm0c#Jd8…' },
+        { cmd: 'echo "пароль от стенда" | arca -t -b', out: 'https://arca.example.com/n/b7QeN1sVz4R#k2P…' },
+        { cmd: 'arca ls', out: '…/n/Xp2kT9wLm0c#Jd8…\t24 часа\tdiff --git a/server.js\n…/n/b7QeN1sVz4R#k2P…\tпосле прочтения\tпароль от стенда' },
+      ],
+    },
+    philosophy: {
+      title: 'Один инструмент — одна задача',
+      lead: 'Заметка в Arca — снимок на сейчас. Для остального есть инструменты лучше.',
+      isTitle: 'Arca — это',
+      is: [
+        'Быстро передать текст, код или файл по ссылке',
+        'Заметки, которые сами исчезают',
+        'Маленький сервер, который можно понять целиком',
+      ],
+      notTitle: 'Arca — не',
+      not: [
+        'База знаний — для этого есть Obsidian',
+        'Совместный редактор документов',
+        'Публичный анонимный pastebin',
+      ],
+    },
+    cta: {
+      title: 'Свой сервер за 15 минут',
+      lead: 'Нужны VPS, домен и Node. Пошаговая инструкция — от DNS до бэкапов.',
+      primary: 'Деплой на VPS',
+      secondary: 'Попробовать локально',
+    },
+    footer: {
+      docs: 'Документация',
+      license: 'Лицензия MIT',
+      privacy: 'Без трекеров, cookies и внешних шрифтов',
+    },
+    docs: {
+      title: 'Документация',
+      onThisPage: 'На странице',
+      prev: 'Назад',
+      next: 'Дальше',
+      edit: 'Предложить правку на GitHub',
+    },
+    notFound: { title: 'Страница не найдена', text: 'Возможно, она переехала.', home: 'На главную' },
+  },
+
+  en: {
+    htmlLang: 'en',
+    otherLang: { code: 'ru', label: 'RU', title: 'Русский' },
+    meta: {
+      title: 'Arca — encrypted notes shared by link',
+      description: 'A self-hosted service for right-now notes: write text or drop a screenshot, get a link. Encrypted in the browser, burns after 30 days.',
+    },
+    nav: { features: 'Features', how: 'How it works', docs: 'Docs', menu: 'Menu' },
+    hero: {
+      eyebrow: 'Open source · MIT · self-hosted',
+      title: 'Notes you need <span class="accent-text">right now</span>',
+      lead: 'Jot down a thought, a draft, a fix or a task, drop a screenshot — get a link. The note lives for 30 days, then burns. Everything is encrypted on the client: the server never sees the text, the files or even the titles.',
+      primary: 'Install',
+      secondary: 'How it works',
+      note: 'Node 22+ · zero npm dependencies on the server · ~30 MB of RAM',
+      screenshotAlt: 'Arca editor: a Markdown draft and the “My notes” list',
+    },
+    scenarios: {
+      title: 'What it is for',
+      lead: 'Writers: you and a few trusted people, each with their own access code. Readers: anyone you send a link to, no sign-up.',
+      items: [
+        'Send a draft or a piece of an article to a colleague for review',
+        'Share a research finding, a table or a data dump without leaving it in a chat',
+        'Pass on a screenshot or a PDF that disappears by itself in a day or a week',
+        'Publish a note straight from nvim or the terminal',
+        'Give an AI agent a way to hand back results as a link',
+      ],
+    },
+    features: {
+      title: 'Everything you need, nothing you don’t',
+      items: [
+        { icon: 'lock', title: 'Encrypted in the browser', text: 'AES-256-GCM. The key lives in the link after <code>#</code>; the server stores only ciphertext.' },
+        { icon: 'flame', title: 'Burn after reading', text: 'A one-time note opens with a button click. Link previews in messengers don’t burn it.' },
+        { icon: 'timer', title: 'Expiry', text: 'From an hour to forever, 30 days by default. A 🔥 countdown on every note.' },
+        { icon: 'code', title: 'Code, never executed', text: 'Highlighting for 20 languages with line numbers. HTML and scripts are only displayed.' },
+        { icon: 'paperclip', title: 'Files', text: 'Up to 10 files of 50 MB each: drag, paste from the clipboard or pick.' },
+        { icon: 'devices', title: 'My notes, everywhere', text: 'One encrypted list shared by all your browsers and the terminal.' },
+        { icon: 'terminal', title: 'CLI', text: 'Files, stdin and <code>$EDITOR</code>. The draft survives a closed terminal.' },
+        { icon: 'scan', title: 'Screenshot → link', text: 'A macOS hotkey: select an area, and the link is already in your clipboard.' },
+      ],
+    },
+    showcase: [
+      { image: 'note', title: 'GitHub-flavored Markdown', text: 'Headings, tables, task lists, quotes and highlighted code blocks. The author can edit a note in place — the link stays the same.', alt: 'A Markdown note: an article plan with a table and tasks' },
+      { image: 'code', title: 'Code, logs and configs', text: 'Scripts, markup, logs and diffs with syntax highlighting and line numbers. The language is detected automatically. Nothing runs, so even a suspicious snippet is safe to share.', alt: 'A Python script with syntax highlighting and line numbers' },
+      { image: 'burn', title: 'Once, and it’s gone', text: 'A password, a token or personal data: the note burns the moment it is opened and is wiped from the server in the same transaction.', alt: 'A one-time note gate with an “Open note” button' },
+    ],
+    how: {
+      title: 'The server knows nothing',
+      lead: 'Encryption happens before anything is sent. The key travels in the part of the link after <code>#</code>, which browsers never send to the server.',
+      steps: [
+        { icon: 'laptop', title: 'Your browser', text: 'Creates a random key and encrypts the text and files' },
+        { icon: 'server', title: 'Server', text: 'Stores only ciphertext: noise without the key' },
+        { icon: 'user', title: 'Reader’s browser', text: 'Takes the key from the link and decrypts locally' },
+      ],
+      anatomy: { sent: 'sent to the server', kept: 'stays in the browser' },
+      demo: {
+        title: 'Try it',
+        hint: 'Everything happens on this page; nothing is sent anywhere.',
+        input: 'Note text',
+        sample: 'Call at 3 pm, the staging password comes in a separate note.',
+        key: 'Key — only in the link',
+        cipher: 'What the server gets',
+        bytes: 'bytes',
+        link: 'Link for the reader',
+        decrypted: 'The reader decrypted',
+        regenerate: 'New key',
+        noScript: 'The demo needs JavaScript.',
+      },
+      more: 'More about encryption',
+    },
+    cli: {
+      title: 'From the terminal and your editor',
+      lead: 'The <code>arca</code> CLI encrypts exactly like the browser and sees the same list of notes.',
+      points: [
+        '<code>arca</code> — open <code>$EDITOR</code>, get a link after saving',
+        '<code>cmd | arca</code> — publish the output of any command',
+        '<code>arca get</code> — decrypt a note to stdout or a file',
+        '<code>:w !arca</code> — publish a buffer right from nvim',
+      ],
+      more: 'CLI docs',
+      terminal: [
+        { cmd: 'git diff | arca -l diff -e 1d', out: 'https://arca.example.com/n/Xp2kT9wLm0c#Jd8…' },
+        { cmd: 'echo "staging password" | arca -t -b', out: 'https://arca.example.com/n/b7QeN1sVz4R#k2P…' },
+        { cmd: 'arca ls', out: '…/n/Xp2kT9wLm0c#Jd8…\t24 hours\tdiff --git a/server.js\n…/n/b7QeN1sVz4R#k2P…\tonce\tstaging password' },
+      ],
+    },
+    philosophy: {
+      title: 'One tool, one job',
+      lead: 'A note in Arca is a snapshot for right now. Other tools do the rest better.',
+      isTitle: 'Arca is',
+      is: [
+        'A quick way to pass text, code or a file by link',
+        'Notes that disappear by themselves',
+        'A small server you can understand in full',
+      ],
+      notTitle: 'Arca is not',
+      not: [
+        'A knowledge base — use Obsidian for that',
+        'A collaborative document editor',
+        'A public anonymous pastebin',
+      ],
+    },
+    cta: {
+      title: 'Your own server in 15 minutes',
+      lead: 'You need a VPS, a domain and Node. Step-by-step guide from DNS to backups.',
+      primary: 'Deploy to a VPS',
+      secondary: 'Try it locally',
+    },
+    footer: {
+      docs: 'Docs',
+      license: 'MIT License',
+      privacy: 'No trackers, cookies or external fonts',
+    },
+    docs: {
+      title: 'Docs',
+      onThisPage: 'On this page',
+      prev: 'Previous',
+      next: 'Next',
+      edit: 'Suggest an edit on GitHub',
+    },
+    notFound: { title: 'Page not found', text: 'It may have moved.', home: 'Home' },
+  },
+};

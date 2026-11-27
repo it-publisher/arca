@@ -17,7 +17,10 @@
     "start": "node --env-file-if-exists=.env server/index.js",
     "test": "node --test test/",
     "token": "node -e \"console.log(require('node:crypto').randomBytes(32).toString('base64url'))\"",
-    "access-code": "node scripts/access-code.js"
+    "access-code": "node scripts/access-code.js",
+    "site:build": "node site/build.js",
+    "site:screens": "npm run build && node site/screenshots.js",
+    "site:preview": "node site/build.js && cd _site && python3 -m http.server 4000 --bind 127.0.0.1"
   },
   "devDependencies": {
     "dompurify": "^3.5.0",
@@ -25,5 +28,6 @@
     "marked": "^18.3.0",
     "vite": "^8.3.8"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "homepage": "https://it-publisher.github.io/arca/"
 }
