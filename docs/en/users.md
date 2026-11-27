@@ -2,43 +2,34 @@
 
 Only people on the server’s list can write to Arca. Anyone with a link can read. There is no sign-up by design: this is a tool for you and a few trusted people, not a public service.
 
-## Where users live
+Users are managed with the `arca-user` command on the server. It is installed during [deployment](/docs/deploy/) (step 6).
 
-In `.env` on the server, comma-separated:
+## Commands
 
-```ini
-ARCA_USERS=me:<token>,anna:<token>,max:<token>
-```
-
-- Name — any word without `:` and `,`. It only helps you tell people apart
-- Token — at least 24 characters, generated with `npm run -s token`
-
-## Token vs access code
-
-| | Token | Access code |
-|---|---|---|
-| Looks like | `Kx7…Qw` | `Kx7…Qw.hR7…Vb2` |
-| Where | On the server and inside the code | Only with the person |
-| Grants | Writing | Writing + decrypting “My notes” |
-
-An access code is the token plus a random **history key**. That key never reaches the server.
-
-## Common tasks
-
-| Task | How |
+| Command | What it does |
 |---|---|
-| Add a person | `npm run -s token` → append `name:<token>` to `ARCA_USERS` → `systemctl restart arca` |
-| Issue a code | The command below, once per person |
-| Revoke access | Remove `name:<token>` from `ARCA_USERS` → `systemctl restart arca` |
-| Code leaked | See below |
+| `arca-user add <name>` | Create a user and print their access code |
+| `arca-user reset <name>` | A new code instead of a leaked or lost one |
+| `arca-user remove <name>` | Revoke access |
+| `arca-user list` | List users |
 
-## Issue an access code
+Names may contain latin letters, digits, `-` and `_`. They only help you tell people apart.
 
-The command takes the token from the server, turns it into a code and puts it into the clipboard. The token never appears on screen or in shell history:
+## Add a person
+
+From your computer:
 
 ```bash
-ssh arca "sed -nE 's/.*anna:([^,]+).*/\1/p' /opt/arca/.env" | npm run -s access-code | pbcopy
+ssh arca arca-user add anna | pbcopy
 ```
+
+| Part | What it does |
+|---|---|
+| `ssh arca` | Runs the command on the server |
+| `arca-user add anna` | Creates a token, appends `anna` to `/opt/arca/.env`, restarts Arca and prints the access code |
+| `\| pbcopy` | Puts the code into your clipboard. It never appears on screen |
+
+If Arca fails to start with the new list, the script restores the previous one.
 
 Hand the code over safely — for example, as a one-time note in Arca itself:
 
@@ -48,20 +39,41 @@ pbpaste | arca -t -b -e 1d | pbcopy
 
 The person opens the link, copies the code and enters it on the sign-in page and in `arca login`.
 
-## ⚠️ One code per person
+## Token vs access code
 
-Generate a code **once** and ask the person to keep it in a password manager. Every new code means a new history key:
+| | Token | Access code |
+|---|---|---|
+| Looks like | `Kx7…Qw` | `Kx7…Qw.hR7…Vb2` |
+| Where | On the server, in `ARCA_USERS` | Only with the person |
+| Grants | Writing | Writing + decrypting “My notes” |
 
-- Notes created with the old code **won’t show up** in “My notes” (they are marked as “created with a different access code”)
-- Links to them keep working and burn on schedule as usual
+An access code is the token plus a random **history key**. The key is created once, when the code is issued, and is never stored on the server.
 
-If someone loses their code, issue a new one: old links stay valid, they just won’t appear in the list.
+## ⚠️ A code is issued once
+
+Ask the person to save the code in a password manager right away. It can’t be recovered: the history key exists nowhere but in the code.
+
+If a code is lost, issue a new one:
+
+```bash
+ssh arca arca-user reset anna | pbcopy
+```
+
+- Links to old notes keep working and burn on schedule as usual
+- They **won’t appear** in “My notes”: a new code means a new history key
 
 ## Code leaked
 
 1. While the old code still works, delete sensitive notes with it: in “My notes” or `arca rm '<url>'`
-2. Generate a new token and replace the old one in `ARCA_USERS`
-3. `systemctl restart arca`
-4. Issue the person a new code
+2. Issue a new code: `ssh arca arca-user reset anna | pbcopy`. The old one stops working immediately
+3. Hand the new code to the person
 
-The old code loses access to the server. Links that already reached the wrong hands keep opening until they expire — that’s why step 1 matters.
+Links that already reached the wrong hands keep opening until they expire — that’s why step 1 matters.
+
+## Revoke access
+
+```bash
+ssh arca arca-user remove anna
+```
+
+The person can no longer create notes. Links they already sent keep working until they expire.

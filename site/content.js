@@ -29,20 +29,20 @@ export const CONTENT = {
     },
     scenarios: {
       title: 'Для чего',
-      lead: 'Пишут — ты и пара доверенных людей, у каждого свой код доступа. Читают — все, кому отправили ссылку, без регистрации.',
+      lead: 'Для текстов, быстрых идей и черновиков, которые не нужно хранить. Отредактировать пост, переписать абзац, поделиться конфигом и закрыть — без захламления основных заметок и документов. Рабочее пространство остаётся чистым.',
       items: [
         'Отправить черновик или фрагмент статьи коллеге на вычитку',
         'Поделиться находкой из исследования, таблицей или выгрузкой, не оставляя её в мессенджере',
         'Передать скриншот или PDF, который сам исчезнет через день или неделю',
-        'Опубликовать заметку прямо из nvim или терминала',
-        'Дать ИИ-агенту способ отдавать результат ссылкой',
+        'Опубликовать заметку прямо из терминала',
+        'Интегрировать в свою AI-систему',
       ],
     },
     features: {
       title: 'Всё нужное, ничего лишнего',
       items: [
         { icon: 'lock', title: 'Шифрование в браузере', text: 'AES-256-GCM. Ключ живёт в ссылке после <code>#</code>, сервер хранит только шифротекст.' },
-        { icon: 'flame', title: 'Сжечь после прочтения', text: 'Одноразовая заметка открывается по кнопке. Превью в мессенджерах её не сжигают.' },
+        { icon: 'flame', title: 'Сжечь после прочтения', text: 'Одноразовая заметка открывается один раз — по кнопке.' },
         { icon: 'timer', title: 'Срок жизни', text: 'От часа до бессрочно, по умолчанию 30 дней. Счётчик 🔥 на каждой заметке.' },
         { icon: 'code', title: 'Код без исполнения', text: 'Подсветка 20 языков и номера строк. HTML и скрипты только показываются.' },
         { icon: 'paperclip', title: 'Файлы', text: 'До 10 файлов по 50 МБ: перетащить, вставить из буфера или выбрать.' },
@@ -103,7 +103,7 @@ export const CONTENT = {
       is: [
         'Быстро передать текст, код или файл по ссылке',
         'Заметки, которые сами исчезают',
-        'Маленький сервер, который можно понять целиком',
+        'Свой сервис: заметки лежат у тебя, а не у чужой компании',
       ],
       notTitle: 'Arca — не',
       not: [
@@ -152,20 +152,20 @@ export const CONTENT = {
     },
     scenarios: {
       title: 'What it is for',
-      lead: 'Writers: you and a few trusted people, each with their own access code. Readers: anyone you send a link to, no sign-up.',
+      lead: 'For texts, quick ideas and drafts you don’t need to keep. Edit a post, rewrite a paragraph, share a config and close it — without cluttering your main notes and documents. Your workspace stays clean.',
       items: [
         'Send a draft or a piece of an article to a colleague for review',
         'Share a research finding, a table or a data dump without leaving it in a chat',
         'Pass on a screenshot or a PDF that disappears by itself in a day or a week',
-        'Publish a note straight from nvim or the terminal',
-        'Give an AI agent a way to hand back results as a link',
+        'Publish a note straight from the terminal',
+        'Plug it into your own AI setup',
       ],
     },
     features: {
       title: 'Everything you need, nothing you don’t',
       items: [
         { icon: 'lock', title: 'Encrypted in the browser', text: 'AES-256-GCM. The key lives in the link after <code>#</code>; the server stores only ciphertext.' },
-        { icon: 'flame', title: 'Burn after reading', text: 'A one-time note opens with a button click. Link previews in messengers don’t burn it.' },
+        { icon: 'flame', title: 'Burn after reading', text: 'A one-time note opens once — with a button click.' },
         { icon: 'timer', title: 'Expiry', text: 'From an hour to forever, 30 days by default. A 🔥 countdown on every note.' },
         { icon: 'code', title: 'Code, never executed', text: 'Highlighting for 20 languages with line numbers. HTML and scripts are only displayed.' },
         { icon: 'paperclip', title: 'Files', text: 'Up to 10 files of 50 MB each: drag, paste from the clipboard or pick.' },
@@ -226,7 +226,7 @@ export const CONTENT = {
       is: [
         'A quick way to pass text, code or a file by link',
         'Notes that disappear by themselves',
-        'A small server you can understand in full',
+        'Your own service: notes stay with you, not with someone else’s company',
       ],
       notTitle: 'Arca is not',
       not: [

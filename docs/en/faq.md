@@ -24,7 +24,7 @@ If you have your access code, the note is in “My notes” in the browser or in
 
 ## I lost my access code
 
-Ask the admin for a new one. Old links keep working, but they won’t appear in the new “My notes” list.
+Ask the admin for a new one: `arca-user reset <name>`. Old links keep working, but they won’t appear in the new “My notes” list.
 
 ## Can the server admin read my notes?
 

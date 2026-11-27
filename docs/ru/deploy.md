@@ -93,11 +93,11 @@ rsync -a --delete --chown=root:root \
 
 ## 6. Настроить и запустить
 
-Сгенерируй по токену на каждого пользователя (локально, `npm run -s token`). Затем на сервере:
+На сервере:
 
 ```bash
 cat > /opt/arca/.env <<'ENV'
-ARCA_USERS=me:<токен>,friend:<токен>
+ARCA_USERS=
 ARCA_HOST=127.0.0.1
 ARCA_PORT=3000
 ARCA_DATA_DIR=/opt/arca/data
@@ -105,8 +105,24 @@ ENV
 chown root:arca /opt/arca/.env && chmod 640 /opt/arca/.env
 
 cp /opt/arca/deploy/arca.service /etc/systemd/system/
-systemctl daemon-reload && systemctl enable --now arca
+systemctl daemon-reload && systemctl enable arca
+ln -sf /opt/arca/deploy/arca-user.sh /usr/local/bin/arca-user
 ```
+
+| Команда | Что делает |
+|---|---|
+| `cat > /opt/arca/.env …` | Создаёт файл настроек. Список пользователей пока пуст |
+| `chown …`, `chmod 640` | Файл могут читать только root и сервис Arca |
+| `cp …`, `systemctl enable` | Регистрирует сервис и включает автозапуск |
+| `ln -sf …` | Подключает команду `arca-user`. При обновлении Arca она обновится сама |
+
+Теперь со своего компьютера создай первого пользователя — себя:
+
+```bash
+ssh arca arca-user add me | pbcopy
+```
+
+Скрипт создаст токен, запустит Arca и положит код доступа в буфер обмена. Сохрани код в менеджере паролей: это твой вход. Остальных людей добавишь так же — см. [Пользователи и коды доступа](/docs/users/).
 
 ## 7. HTTPS через Caddy
 
@@ -125,7 +141,7 @@ systemctl status arca --no-pager          # active (running)
 curl -sI https://твой.домен | head -1     # HTTP/2 200
 ```
 
-Открой адрес в браузере и войди кодом доступа. Как его получить — в разделе [Пользователи и коды доступа](/docs/users/).
+Открой адрес в браузере и войди кодом доступа из шага 6.
 
 ## Дальше
 
